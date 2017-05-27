@@ -1,0 +1,23 @@
+{
+    "name": "bvrignaud/ci-flighstats",
+    "description": "FlightStats API Client for CodeIgniter",
+    "type": "library",
+    "keywords": [
+        "flightstats",
+        "codeigniter"
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "kenjis/ci-phpunit-test": "^0.15.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benoit VRIGNAUD",
+            "email": "benoit.vrignaud@zaclys.net"
+        }
+    ],
+    "require": {}
+}
