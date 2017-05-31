@@ -22,12 +22,10 @@ class ScheduledFlight extends BaseObject
      * @var string
      */
     public $flightNumber;
-    
     /**
      * @var string
      */
     public $departureAirportFsCode;
-    
     /**
      * @var string
      */
@@ -56,7 +54,7 @@ class ScheduledFlight extends BaseObject
     /**
      * @var DateTime
      */
-    public $arrivalTime;
+    private $arrivalTime;
     
     /**
      * @var string
@@ -69,11 +67,12 @@ class ScheduledFlight extends BaseObject
     public $isCodeshare;
     
     /**
-     * @var isWetlease
+     * @var boolean
      */
     public $isWetlease;
     
     /**
+     * The type of service offered for the flight
      * @var string
      */
     public $serviceType;
@@ -82,17 +81,14 @@ class ScheduledFlight extends BaseObject
      * @var
      */
     public $serviceClasses;
-    
     /**
      * @var
      */
     public $trafficRestrictions;
-    
     /**
      * @var
      */
     public $codeshares;
-    
     /**
      * @var referenceCode
      */
@@ -102,12 +98,10 @@ class ScheduledFlight extends BaseObject
      * @var
      */
     public $departureTerminal;
-    
     /**
      * @var string
      */
     public $arrivalTerminal;
-    
     
     public function __get($name)
     {
@@ -117,6 +111,9 @@ class ScheduledFlight extends BaseObject
     public function __set($name, $value)
     {
         switch ($name) {
+            case 'arrivalTime':
+                $this->arrivalTime = new DateTime($value);
+                break;
             case 'departureTime':
                 $this->departureTime = new DateTime($value);
         }
@@ -126,5 +123,14 @@ class ScheduledFlight extends BaseObject
     public function getDepartureTime() {
         return $this->departureTime;
     }
+    public function setDepartureTime(DateTime $departureTime) {
+        $this->departureTime = $departureTime;
+    }
     
+    public function getArrivalTime() {
+        return $this->arrivalTime;
+    }
+    public function setArrivalTime(DateTime $arrivalTime) {
+        $this->arrivalTime = $arrivalTime;
+    }
 }
