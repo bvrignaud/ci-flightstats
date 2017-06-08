@@ -87,4 +87,32 @@ class FlightstatsApi
         }
         return $airports;
     }
+    
+    
+    /**
+     * Extract flight number and carrier code from a human flight number
+     * @param string $humanFlightNumber
+     * @return string[]|NULL - ex: AF3321 return ['carrier' => 'AF, 'flightnumber' => '3321']
+     */
+    public static function extractDataFromFlightNumber($humanFlightNumber)
+    {
+        if (preg_match('/^([a-zA-Z]+)([0-9]+)$/u', $humanFlightNumber, $data)) {
+            if (strlen($data[1]) > 1) {
+                $infos = [
+                    'carrier' => $data[1],
+                    'flightnumber' => $data[2],
+                ];
+            } else {
+                $tmp = str_replace(' ', '', $humanFlightNumber);
+                $infos = [
+                    'carrier' => substr($tmp, 0, 2),
+                    'flightnumber' => substr($tmp, 2),
+                ];
+            }
+            return $infos;
+        } else {
+            return null;
+        }
+    }
+    
 }
