@@ -21,4 +21,22 @@ class Flightstats_test extends TestCase
         $this->assertEquals($flight->departureAirportFsCode, $flight->departureAirport->fs);
         $this->assertEquals($flight->arrivalAirportFsCode, $flight->arrivalAirport->fs);
     }
+    
+    public function test_extractDataFromFlightNumber()
+    {
+        $data = FlightstatsApi::extractDataFromFlightNumber('AF3321');
+        $this->assertEquals(['carrier' => 'AF', 'flightnumber' => '3321'], $data);
+        
+        $data = FlightstatsApi::extractDataFromFlightNumber('UA54');
+        $this->assertEquals(['carrier' => 'UA', 'flightnumber' => '54'], $data);
+        
+        $data = FlightstatsApi::extractDataFromFlightNumber('JAF3685');
+        $this->assertEquals(['carrier' => 'JAF', 'flightnumber' => '3685'], $data);
+        
+        $data = FlightstatsApi::extractDataFromFlightNumber('AF8');
+        $this->assertEquals(['carrier' => 'AF', 'flightnumber' => '8'], $data);
+        
+        $data = FlightstatsApi::extractDataFromFlightNumber('A53056');
+        $this->assertEquals(['carrier' => 'A5', 'flightnumber' => '3056'], $data);
+    }
 }
