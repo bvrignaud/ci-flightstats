@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 require_once 'BaseObject.php';
+require_once 'Equipment.php';
+
 
 /**
  * ScheduledFlight entitie
@@ -62,6 +64,11 @@ class ScheduledFlight extends BaseObject
     public $flightEquipmentIataCode;
     
     /**
+     * @var Equipment
+     */
+    public $flightEquipment;
+    
+    /**
      * @var boolean
      */
     public $isCodeshare;
@@ -116,6 +123,7 @@ class ScheduledFlight extends BaseObject
                 break;
             case 'departureTime':
                 $this->departureTime = new DateTime($value);
+                break;
         }
     }
     

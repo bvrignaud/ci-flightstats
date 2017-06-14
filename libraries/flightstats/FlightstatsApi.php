@@ -61,6 +61,7 @@ class FlightstatsApi
             $flight->departureAirport = new Airport($reponse->return->appendix->airports->airport[1]);
             $flight->arrivalAirport = new Airport($reponse->return->appendix->airports->airport[0]);
         }
+        $flight->flightEquipment = new Equipment($reponse->return->appendix->equipments->equipment);
         
         return $flight;
     }
