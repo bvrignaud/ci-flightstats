@@ -53,7 +53,8 @@ class FlightstatsApi
         if (!isset($reponse->return->scheduledFlights->scheduledFlight)) {
             return null;
         }
-        $flight = new ScheduledFlight($reponse->return->scheduledFlights->scheduledFlight);
+        $scheduledFlight = $reponse->return->scheduledFlights->scheduledFlight;
+        $flight = new ScheduledFlight($scheduledFlight);
         if ($flight->departureAirportFsCode == $reponse->return->appendix->airports->airport[0]->fs) {
             $flight->departureAirport = new Airport($reponse->return->appendix->airports->airport[0]);
             $flight->arrivalAirport = new Airport($reponse->return->appendix->airports->airport[1]);
@@ -61,6 +62,8 @@ class FlightstatsApi
             $flight->departureAirport = new Airport($reponse->return->appendix->airports->airport[1]);
             $flight->arrivalAirport = new Airport($reponse->return->appendix->airports->airport[0]);
         }
+        $flight->setDepartureTime(new DateTime($scheduledFlight->departureTime, new DateTimeZone($flight->departureAirport->timeZoneRegionName)));
+        $flight->setArrivalTime(new DateTime($scheduledFlight->arrivalTime, new DateTimeZone($flight->arrivalAirport->timeZoneRegionName)));
         $flight->flightEquipment = new Equipment($reponse->return->appendix->equipments->equipment);
         
         return $flight;
