@@ -39,4 +39,10 @@ class Flightstats_test extends TestCase
         $data = FlightstatsApi::extractDataFromFlightNumber('A53056');
         $this->assertEquals(['carrier' => 'A5', 'flightnumber' => '3056'], $data);
     }
+    
+    public function test_getDuration()
+    {
+        $flight = $this->obj->getScheduleDepartureByFlightNumber('AF', '7', new DateTime('2017-06-18'));
+        $this->assertEquals('7h 25m', $flight->getDuration()->format('%hh %im'));
+    }
 }

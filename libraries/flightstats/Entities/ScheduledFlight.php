@@ -141,4 +141,15 @@ class ScheduledFlight extends BaseObject
     public function setArrivalTime(DateTime $arrivalTime) {
         $this->arrivalTime = $arrivalTime;
     }
+    
+    // =========================================================
+    
+    /**
+     * Calculate and return the fligh duration
+     * @return DateInterval
+     */
+    public function getDuration()
+    {
+        return date_diff($this->getDepartureTime(), $this->getArrivalTime());
+    }
 }
