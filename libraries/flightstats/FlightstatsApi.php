@@ -71,6 +71,29 @@ class FlightstatsApi
 
 
     /**
+     * Returns the airport with the given FlightStats code, a globally unique code across time
+     * @param string $fsCode - FlightStats code, globally unique across time
+     * @throws SoapFault
+     * @return Airport
+     */
+    public function getAirportByFsCode($fsCode)
+    {
+        $client  = new SoapClient('https://api.flightstats.com/flex/airports/docs/v1/lts/soap/airportsService.wsdl');
+
+        $params = [
+            'appId' => $this->appId,
+            'appKey' => $this->appKey,
+            'code' => $fsCode,
+            'extendedOptions' => 'languageCode:'.$this->languageCode,
+        ];
+
+        $reponse = $client->airportByFsCode($params);
+
+        return new Airport($reponse->return);
+    }
+
+
+    /**
      * Get all aiports
      * @return Airport[]
      */
