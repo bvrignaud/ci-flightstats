@@ -42,7 +42,13 @@ class Flightstats_test extends TestCase
     
     public function test_getDuration()
     {
-        $flight = $this->obj->getScheduleDepartureByFlightNumber('AF', '7', new DateTime('2017-06-18'));
+        $flight = $this->obj->getScheduleDepartureByFlightNumber('AF', '7', new DateTime('2017-08-18'));
         $this->assertEquals('7h 25m', $flight->getDuration()->format('%hh %im'));
+    }
+
+    public function test_getAirportByFsCode()
+    {
+        $airport = $this->obj->getAirportByFsCode('PDX');
+        $this->assertEquals('PDX', $airport->fs);
     }
 }
