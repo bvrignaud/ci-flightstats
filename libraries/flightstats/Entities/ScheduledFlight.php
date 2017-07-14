@@ -8,7 +8,7 @@ require_once 'Equipment.php';
 
 /**
  * ScheduledFlight entitie
- * 
+ *
  * @author     Benoit VRIGNAUD <https://github.com/bvrignaud>
  * @license    MIT License
  * @link       https://github.com/bvrignaud/ci-flightstats
@@ -27,7 +27,9 @@ class ScheduledFlight extends BaseObject
     /**
      * @var string
      */
+    
     public $departureAirportFsCode;
+    
     /**
      * @var string
      */
@@ -88,16 +90,20 @@ class ScheduledFlight extends BaseObject
      * @var
      */
     public $serviceClasses;
+    
     /**
      * @var
      */
     public $trafficRestrictions;
+    
     /**
      * @var
      */
     public $codeshares;
+    
     /**
-     * @var referenceCode
+     *
+     * @var string
      */
     public $referenceCode;
     
@@ -105,6 +111,7 @@ class ScheduledFlight extends BaseObject
      * @var
      */
     public $departureTerminal;
+    
     /**
      * @var string
      */
